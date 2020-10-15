@@ -232,3 +232,8 @@ _Pvt_Extensions
 
 #Config info files
 /PrivateConfigurationAndInfo/
+
+#remove config files
+appsettings.Development.json
+appsettings.json
+
