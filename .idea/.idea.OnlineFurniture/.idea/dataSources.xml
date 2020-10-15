@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="PostgreSQL - pkubsiqp@manny.db.elephantsql.com" uuid="3117c817-2ed7-4bbb-bef6-82ac05cafca5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://manny.db.elephantsql.com/pkubsiqp</jdbc-url>
+    </data-source>
+  </component>
+</project>
