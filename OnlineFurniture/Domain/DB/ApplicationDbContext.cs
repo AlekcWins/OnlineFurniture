@@ -22,6 +22,7 @@ namespace OnlineFurniture.Data
 
             builder.Entity<Product>(b =>
             {
+                
                 b.ToTable("Products");
                 EntityId(b);
                 b.Property(x => x.Name)
