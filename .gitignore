@@ -234,6 +234,9 @@ _Pvt_Extensions
 /PrivateConfigurationAndInfo/
 
 #remove config files
-appsettings.Development.json
-appsettings.json
+/OnlineFurniture/appsettings.Development.json
+/OnlineFurniture/appsettings.json
 
+#IDEs
+/.idea/
+/.vs/
