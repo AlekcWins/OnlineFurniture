@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <div class="row" style="height: 450px;">
       <div class="col-md-12 my-auto side-header">
-        <img src="/assets/img/add_user.png" class="mx-auto d-block">
+        <img src="assets/add_user.png" class="mx-auto d-block">
         <h1>User Registration</h1>
         <p><em>-Using <strong>Asp.Net Core Web API</strong> and <strong>Angular 7</strong></em></p>
       </div>
@@ -20,10 +20,10 @@
         <input class="form-control" formControlName="Email">
         <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Invalid email address.</label>
       </div>
-      <div class="form-group">
-        <label>Full Name</label>
-        <input class="form-control" formControlName="FullName">
-      </div>
+<!--      <div class="form-group">-->
+<!--        <label>Full Name</label>-->
+<!--        <input class="form-control" formControlName="FullName">-->
+<!--      </div>-->
       <div formGroupName="Passwords">
         <div class="form-group required">
           <label>Password</label>
@@ -40,7 +40,8 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-8 offset-md-2">
-          <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+<!--          <button type="submit" class="btn btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>-->
+          <button type="submit" class="btn btn-lg btn-block">Sign Up</button>
         </div>
       </div>
     </form>

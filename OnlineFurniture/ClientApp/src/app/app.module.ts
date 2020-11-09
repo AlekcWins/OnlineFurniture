@@ -1,9 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
-
 import {AppComponent} from './app.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
@@ -14,6 +13,9 @@ import {AuthorizeGuard} from 'src/api-authorization/authorize.guard';
 import {AuthorizeInterceptor} from 'src/api-authorization/authorize.interceptor';
 import {UserComponent} from './user/user.component';
 import {RegistrationComponent} from './user/registration/registration.component';
+import {UserService} from './shared/user.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,20 @@ import {RegistrationComponent} from './user/registration/registration.component'
     CounterComponent,
     FetchDataComponent,
     UserComponent,
-    RegistrationComponent
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
+    HttpClientModule,
     ApiAuthorizationModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      progressBar: true
+    }),
+    // TODO move the route to a separate file
     RouterModule.forRoot([
       {path: '', redirectTo: '/user/registration', pathMatch: 'full'},
       {path: 'counter', component: CounterComponent},
@@ -43,6 +52,7 @@ import {RegistrationComponent} from './user/registration/registration.component'
     ])
   ],
   providers: [
+    UserService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

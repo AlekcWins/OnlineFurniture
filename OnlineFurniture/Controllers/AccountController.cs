@@ -18,13 +18,17 @@ namespace OnlineFurniture.Controllers
             _signInManager = signInManager;
         }
 
+       
+        
+
+        
+        //POST : /api/Account/Register
+        //TODO ApplicationUserModel ->  RegisterViewModel
         [HttpPost]
         [Route("Register")]
-        //POST : /api/ApplicationUser/Register
-
-        //TODO ApplicationUserModel ->  RegisterViewModel
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
+            Console.WriteLine("###################"+"Start");
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -35,11 +39,13 @@ namespace OnlineFurniture.Controllers
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
                 return Ok(result);
+               
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                //Todo add logger ex
+                return StatusCode(500);
+                
             }
         }
     }

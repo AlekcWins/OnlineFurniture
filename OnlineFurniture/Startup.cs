@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +18,7 @@ namespace OnlineFurniture
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Console.Error.Write("404");
         }
 
         public IConfiguration Configuration { get; }
@@ -41,6 +43,7 @@ namespace OnlineFurniture
             {
                 options.Password.RequiredLength = 10;
             });
+            services.AddCors();
             services.AddControllersWithViews();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
@@ -71,6 +74,13 @@ namespace OnlineFurniture
 
             app.UseRouting();
 
+            app.UseCors(builder =>
+                builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+            
+            );
+            
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
