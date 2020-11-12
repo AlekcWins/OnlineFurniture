@@ -44,6 +44,7 @@ namespace OnlineFurniture.Controllers
             catch (Exception ex)
             {
                 //Todo add logger ex
+                
                 return StatusCode(500);
                 
             }
