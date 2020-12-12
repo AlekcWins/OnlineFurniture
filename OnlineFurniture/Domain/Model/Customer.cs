@@ -1,12 +1,19 @@
-﻿using OnlineFurniture.Domain.Model.Common;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using OnlineFurniture.Domain.Model.Common;
 
 namespace OnlineFurniture.Domain.Model
 {
     /// <summary>
     /// Сущность-пользователь
     /// </summary>
-    public class User : Entity
+    public class Customer 
     {
+        /// <summary>
+        /// ID 
+        /// </summary>
+        public  long Id { get; set; }
+        
         /// <summary>
         /// Роль пользователя
         /// </summary>
@@ -15,6 +22,7 @@ namespace OnlineFurniture.Domain.Model
         /// <summary>
         /// Фамилия пользователя
         /// </summary>
+        [Required]
         public string Surname { get; set; }
 
         /// <summary>
@@ -36,5 +44,8 @@ namespace OnlineFurniture.Domain.Model
         /// Телефонный номер
         /// </summary>
         public string Phone { get; set; }
+        
+        
+        public ICollection<Order> Orders { get; set; }
     }
 }
