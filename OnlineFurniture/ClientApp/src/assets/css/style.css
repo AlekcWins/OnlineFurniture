@@ -1594,19 +1594,6 @@ textarea.input {
   margin-left: 15px;
 }
 
-.product-details .product-links {
-  margin-top: 15px;
-}
-
-.product-details .product-links li {
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-
-.product-details .product-links li+li {
-  margin-left: 10px;
-}
 
 /*----------------------------*\
 	 Product tab
