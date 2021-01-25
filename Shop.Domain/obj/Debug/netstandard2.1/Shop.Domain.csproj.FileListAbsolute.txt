@@ -1,0 +1,8 @@
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.deps.json
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.dll
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.pdb
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.AssemblyInfoInputs.cache
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.AssemblyInfo.cs
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.dll
+C:\Users\TheMe\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.pdb
