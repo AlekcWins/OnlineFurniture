@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaderResponse, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -56,4 +56,21 @@ export class UserService {
     return this.http.get(this.BaseURI + '/UserProfile');
   }
 
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    const userRole = payLoad.role;
+    allowedRoles.forEach(element => {
+      // tslint:disable-next-line:triple-equals
+      if (userRole == element) {
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
+
+  isAdmin() {
+    return this.http.get(this.BaseURI + '/iSAdmin');
+  }
 }

@@ -7,9 +7,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
-import {ApiAuthorizationModule} from 'src/api-authorization/api-authorization.module';
-import {AuthorizeGuard} from 'src/api-authorization/authorize.guard';
-import {AuthorizeInterceptor} from 'src/api-authorization/authorize.interceptor';
+
 
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {NgxSpinnerModule} from 'ngx-spinner';
@@ -34,6 +32,10 @@ import {ProductComponent} from './components/product/product.component';
 import {ThankyouComponent} from './components/thankyou/thankyou.component';
 import {LoginComponent} from './user/login/login.component';
 import { LogoutComponent } from './user/logout/logout.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import {AuthInterceptor} from './auth/uth.interceptor';
+import { AdmincomponentComponent } from './admin-panel/admincomponent/admincomponent.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,9 @@ import { LogoutComponent } from './user/logout/logout.component';
     ProductComponent,
     ThankyouComponent,
     LogoutComponent,
+    MyAccountComponent,
+    AdmincomponentComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -61,14 +66,13 @@ import { LogoutComponent } from './user/logout/logout.component';
     NgxSpinnerModule,
     ReactiveFormsModule,
     FormsModule,
-    ApiAuthorizationModule,
     ToastrModule.forRoot({
       progressBar: true
     }),
   ],
   providers: [
     UserService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,10 @@ import {UserComponent} from './user/user.component';
 import {RegistrationComponent} from './user/registration/registration.component';
 import {LoginComponent} from './user/login/login.component';
 import {LogoutComponent} from './user/logout/logout.component';
+import {MyAccountComponent} from './my-account/my-account.component';
+import {AuthGuard} from './auth/auth.guard';
+import {AdmincomponentComponent} from './admin-panel/admincomponent/admincomponent.component';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
 
 
 const routes: Routes = [
@@ -26,6 +30,15 @@ const routes: Routes = [
   },
   {
     path: 'thankyou', component: ThankyouComponent
+  },
+  {
+    path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-panel', component: AdmincomponentComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']}
+  },
+  {
+    path: 'forbidden', component: ForbiddenComponent
   },
 
   { path: 'user', component: UserComponent, children: [

@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/');
       },
       err => {
-        if (err.status === 400) {
+        // tslint:disable-next-line:triple-equals
+        if (err.status == 400) {
           this.toastr.error('Incorrect username or password.', 'Authentication failed.');
         } else {
           console.log(err);

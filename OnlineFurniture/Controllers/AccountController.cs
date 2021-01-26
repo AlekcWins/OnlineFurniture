@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace OnlineFurniture.Controllers
         [Route("Account/Register")]
         public async Task<Object> PostApplicationUser(ApplicationUserModel model)
         {
+            model.Role = "Customer";
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
@@ -46,6 +48,7 @@ namespace OnlineFurniture.Controllers
             try
             {
                 var result = await _userManager.CreateAsync(applicationUser, model.Password);
+                await _userManager.AddToRoleAsync(applicationUser, model.Role);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -63,11 +66,16 @@ namespace OnlineFurniture.Controllers
             var user = await _userManager.FindByNameAsync(loginModel.UserName);
             if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
             {
+                var role = await _userManager.GetRolesAsync(user);
+                IdentityOptions _options = new IdentityOptions();
+                
                 var tokenDescriptor = new SecurityTokenDescriptor
+                    
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim("UserID", user.Id)
+                        new Claim("UserID", user.Id),
+                        new Claim(_options.ClaimsIdentity.RoleClaimType,role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
                     
@@ -88,6 +96,9 @@ namespace OnlineFurniture.Controllers
             }
         }
 
-        public object Configuration { get; set; }
+   
+
+       
+
     }
 }
