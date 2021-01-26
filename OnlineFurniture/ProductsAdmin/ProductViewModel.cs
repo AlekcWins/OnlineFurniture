@@ -6,7 +6,7 @@
             public string Name { get; set; }
             public string Description { get; set; }
             public decimal Value { get; set; }
-        public string url_image { get; set; }
+            public string url_image { get; set; }
         }
 
     }

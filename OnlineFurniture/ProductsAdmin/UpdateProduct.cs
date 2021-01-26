@@ -20,6 +20,13 @@ namespace Shop.Application.ProductsAdmin
  
             await _context.SaveChangesAsync();
         }
-        
+        public class ProductViewModel
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public decimal Value { get; set; }
+            public string url_image { get; set; }
+        }
+
     }
 }

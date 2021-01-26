@@ -15,7 +15,7 @@ namespace Shop.Database
         public DbSet<OrderProduct> OrderProducts  { get; set; }
         public DbSet<Basket> Basket { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<IdentityUser> Users { get; set; }
        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
