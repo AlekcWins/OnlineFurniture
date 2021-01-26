@@ -1,22 +1,14 @@
-﻿
+﻿using OnlineFurniture.Domain.Model;
 
-using OnlineFurniture.Domain.Model.Common;
-
-namespace OnlineFurniture.Domain.Model
+namespace Shop.Domain.Models
 {
-    /// <summary>
-    /// Сущность-склад товаров
-    /// </summary>
-    public class Stock : Entity
+    public class Stock
     {
-        /// <summary>
-        /// Продукт, хранимый на складе
-        /// </summary>
-        public Product Product { get; set; }
-
-        /// <summary>
-        /// Количество хранимого товара
-        /// </summary>
+        public int Id { get; set; }
+        public string Description { get; set; }
         public int Quantity { get; set; }
+
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

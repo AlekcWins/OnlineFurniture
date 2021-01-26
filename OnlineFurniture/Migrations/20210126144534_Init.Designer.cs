@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Shop.Database;
@@ -9,9 +10,10 @@ using Shop.Database;
 namespace OnlineFurniture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210126144534_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,6 +256,9 @@ namespace OnlineFurniture.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Patronymic")
                         .HasColumnType("text");
 
@@ -270,6 +275,8 @@ namespace OnlineFurniture.Migrations
                     b.HasKey("UserId");
 
                     b.HasIndex("BasketId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Customers");
                 });
@@ -439,6 +446,10 @@ namespace OnlineFurniture.Migrations
                     b.HasOne("OnlineFurniture.Domain.Model.Basket", "Basket")
                         .WithMany()
                         .HasForeignKey("BasketId");
+
+                    b.HasOne("OnlineFurniture.Domain.Model.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("OnlineFurniture.Domain.Model.Order", b =>

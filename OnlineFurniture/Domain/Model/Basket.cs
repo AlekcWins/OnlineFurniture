@@ -7,10 +7,11 @@ namespace OnlineFurniture.Domain.Model
     /// </summary>
     public class Basket : Entity
     {
+        public int BasketId { get; set; }
         /// <summary>
         /// Товар, готовый к покупке
         /// </summary>
-        public Product Product { get; set; }
+        public int ProductId { get; set; }
 
         /// <summary>
         /// Количество покупаемого товара

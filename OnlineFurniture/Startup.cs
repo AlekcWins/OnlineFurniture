@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OnlineFurniture.Data;
 using OnlineFurniture.Models;
+using Shop.Database;
 
 namespace OnlineFurniture
 {
@@ -30,8 +30,7 @@ namespace OnlineFurniture
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+       
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

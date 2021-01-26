@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\OnlineFurniture",
-    "\\OnlineFurniture\\DefaultConfigs"
+    "\\OnlineFurniture\\DefaultConfigs",
+    "\\OnlineFurniture\\Domain",
+    "\\OnlineFurniture\\Domain\\DB"
   ],
   "PreviewInSolutionExplorer": false
 }
