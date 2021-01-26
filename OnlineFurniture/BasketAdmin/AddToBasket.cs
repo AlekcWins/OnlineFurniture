@@ -9,11 +9,11 @@ namespace OnlineFurniture.BasketAdmin
 
     public class AddToBasket
     {
-        private ISession _session;
+        private int _session;
 
-        public AddToBasket(ISession session )
+        public AddToBasket(int UserId)
         {
-            _session = session;
+            _session = UserId;
         }
 
         public class Request
