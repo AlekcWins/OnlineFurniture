@@ -10,7 +10,7 @@ export class UserService {
   constructor(private fb: FormBuilder, private http: HttpClient) {
   }
 
-  readonly BaseURI = 'http://localhost:5001/api';
+  readonly BaseURI = '/api';
 
   formModel = this.fb.group({
     UserName: ['', Validators.required],
@@ -38,13 +38,22 @@ export class UserService {
   }
 
   register() {
-    let body = {
+    const body = {
       UserName: this.formModel.value.UserName,
       Email: this.formModel.value.Email,
       // FullName: this.formModel.value.FullName,
       Password: this.formModel.value.Passwords.Password
     };
 
-    return this.http.post('/api/Account/Register', body);
+    return this.http.post(this.BaseURI + '/Account/Register', body);
   }
+
+  login(formData) {
+    return this.http.post(this.BaseURI + '/Account/Login', formData);
+  }
+
+  getUserProfile() {
+    return this.http.get(this.BaseURI + '/UserProfile');
+  }
+
 }
