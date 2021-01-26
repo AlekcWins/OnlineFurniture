@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using OnlineFurniture.Domain.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineFurniture.BasketAdmin
 {
@@ -19,7 +21,7 @@ namespace OnlineFurniture.BasketAdmin
             /// <summary>
             /// Товар, готовый к покупке
             /// </summary>
-            public int ProductId { get; set; }
+            public Product Product { get; set; }
 
             /// <summary>
             /// Количество покупаемого товара
@@ -29,12 +31,28 @@ namespace OnlineFurniture.BasketAdmin
 
         public void Do(Request request)
         {
-            var BasketProduct = new Basket
+            var BasketList = new List<Basket>();
+            var stringObject = _session.GetString("Basket");
+
+            if(!string.IsNullOrEmpty(stringObject))
             {
-                ProductId = request.ProductId,
-                Quantity = request.Quantity,
-            };
-            var stringObject = JsonConvert.SerializeObject(request);
+                BasketList = JsonConvert.DeserializeObject<List<Basket>>(stringObject);
+            }
+
+            if(BasketList.Any(x => x.Product.ProductId == request.Product.ProductId))
+            {
+                BasketList.Find(x => x.Product.ProductId == request.Product.ProductId).Quantity += request.Quantity;
+            }
+            else
+            {
+                BasketList.Add(new Basket
+                {
+                    Product = request.Product,
+                    Quantity = request.Quantity,
+                });
+            }
+            
+            stringObject = JsonConvert.SerializeObject(request);
             _session.SetString("Basket", stringObject);
         }
     }

@@ -11,7 +11,7 @@ namespace OnlineFurniture.Domain.Model
         /// <summary>
         /// Товар, готовый к покупке
         /// </summary>
-        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
         /// <summary>
         /// Количество покупаемого товара

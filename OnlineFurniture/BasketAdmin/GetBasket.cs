@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using OnlineFurniture.Domain.Model;
 using Shop.Database;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineFurniture.BasketAdmin
 {
@@ -23,28 +21,32 @@ namespace OnlineFurniture.BasketAdmin
 
         public class Response
         {
-            public string Name { get; set; }
-            public string Value { get; set; }
-            public int ProductId { get; set; }
+
+            public Product Product { get; set; }
 
    
             public int Quantity { get; set; }
         }
 
-        public Response Do()
+        public IEnumerable<Response> Do()
         {
             var stringObject = _session.GetString("Basket");
-            var BasketProduct = JsonConvert.DeserializeObject<Basket>(stringObject);
+            if(string.IsNullOrEmpty(stringObject))
+            {
+                return new List<Response>();
+            }
+
+
+
+            var BasketList = JsonConvert.DeserializeObject<List<Basket>>(stringObject);
             var response = _ctx.Products
                 .Include(x => x.ProductId)
-                .Where(x => x.ProductId == BasketProduct.ProductId)
+                .Where(x => BasketList.Any(y => y.Product.ProductId==x.ProductId))
                 .Select(x => new Response
                 {
-                    Name = x.Name,
-                    Value =$"${ x.Value.ToString("N2")}",
-                    ProductId = x.ProductId,
-                    Quantity=BasketProduct.Quantity,
-                }).FirstOrDefault();
+                    Product = x,
+                    Quantity=BasketList.FirstOrDefault(y => y.Product.ProductId == x.ProductId).Quantity,
+                }).ToList();
             return response;
         }
     }
