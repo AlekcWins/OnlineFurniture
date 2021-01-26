@@ -13,7 +13,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.formModel.reset();
+    // ToDO
+    // this.service.formModel.reset();
   }
 
 

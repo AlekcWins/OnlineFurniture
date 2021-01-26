@@ -44,6 +44,7 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Data\Migrations" />
+      <Folder Include="wwwroot\Files" />
     </ItemGroup>
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Account\Register.cshtml" />

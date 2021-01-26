@@ -1,25 +1,23 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './components/home/home.component';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
 import {CartComponent} from './components/cart/cart.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ProductComponent} from './components/product/product.component';
 import {ThankyouComponent} from './components/thankyou/thankyou.component';
 import {UserComponent} from './user/user.component';
 import {RegistrationComponent} from './user/registration/registration.component';
+import {LoginComponent} from './user/login/login.component';
+import {LogoutComponent} from './user/logout/logout.component';
+import {MyAccountComponent} from './my-account/my-account.component';
+import {AuthGuard} from './auth/auth.guard';
+import {AdmincomponentComponent} from './admin-panel/admincomponent/admincomponent.component';
+import {ForbiddenComponent} from './forbidden/forbidden.component';
 
 
 const routes: Routes = [
   {
     path: '', component: HomeComponent
-  },
-  {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: 'register', component: RegisterComponent
   },
   {
     path: 'product/:id', component: ProductComponent
@@ -33,8 +31,21 @@ const routes: Routes = [
   {
     path: 'thankyou', component: ThankyouComponent
   },
+  {
+    path: 'my-account', component: MyAccountComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-panel', component: AdmincomponentComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']}
+  },
+  {
+    path: 'forbidden', component: ForbiddenComponent
+  },
+
   { path: 'user', component: UserComponent, children: [
-    {path: 'registration', component: RegistrationComponent}]
+    {path: 'registration', component: RegistrationComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'logout', component: LogoutComponent},
+    ]
   },
 ];
 

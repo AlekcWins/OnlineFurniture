@@ -1,0 +1,11 @@
+
+<div class="d-flex justify-content-center m-5">
+  <div class="card" style="width:18rem" *ngIf="userDetails">
+    <a class="text-center m-3">JWT Auth System</a>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
+      <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
+    </ul>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+  </div>
+</div>
