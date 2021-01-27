@@ -12,7 +12,7 @@ namespace WebApplication.Controllers
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet]
-        [Route("products")]
+        [Route("productsffff")]
         public Resp Get()
         {
             var products = new List<Product>();

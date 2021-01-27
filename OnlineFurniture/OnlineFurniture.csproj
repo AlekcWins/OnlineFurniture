@@ -14,6 +14,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
         <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.6" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
@@ -42,11 +43,19 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
+        <None Include="wwwroot\Files\product01.png" />
+        <None Include="wwwroot\Files\product02.png" />
+        <None Include="wwwroot\Files\product03.png" />
+        <None Include="wwwroot\Files\product04.png" />
+        <None Include="wwwroot\Files\product05.png" />
+        <None Include="wwwroot\Files\product06.png" />
+        <None Include="wwwroot\Files\product07.png" />
+        <None Include="wwwroot\Files\product08.png" />
+        <None Include="wwwroot\Files\product09.png" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Data\Migrations" />
       <Folder Include="Migrations" />
-      <Folder Include="wwwroot\Files" />
     </ItemGroup>
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Account\Register.cshtml" />

@@ -49,6 +49,10 @@ namespace OnlineFurniture
             {
                 options.Password.RequiredLength = 10;
             });
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            
             services.AddCors();
             services.AddControllersWithViews();
             services.AddRazorPages();

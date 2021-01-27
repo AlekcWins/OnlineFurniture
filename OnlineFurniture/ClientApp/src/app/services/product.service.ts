@@ -15,8 +15,7 @@ export class ProductService {
 
   /* This is to fetch all products from the backend server */
   getAllProducts(numberOfResults= 10): Observable<ServerResponse> {
-    console.log('gg');
-    return this.http.get<ServerResponse>(this.SERVER_URL + '/products', {
+    return this.http.get<ServerResponse>(this.SERVER_URL + 'products', {
       params: {
         limit: numberOfResults.toString()
       }
@@ -29,7 +28,7 @@ export class ProductService {
         name: 'String',
         category: 'String',
         description: 'String',
-        image: 'https://images-na.ssl-images-amazon.com/images/I/71VOUtLV5UL._AC_SL1500_.jpg',
+        image: '/getImage/product02.png',
         price: 20,
         quantity: 5,
         images: 'String',

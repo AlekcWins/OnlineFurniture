@@ -43,11 +43,11 @@ namespace OnlineFurniture.Controllers
 
 
         [HttpGet]
-        [Route("getImage")]
-        public async Task<IActionResult> Get()
+        [Route("getImage/{url}")]
+        public async Task<IActionResult> Get(string url)
         {
-            var image =  System.IO.File.OpenRead(_appEnvironment.WebRootPath + "/Files/" + "milki 2.jpeg");
-            return    File(image, "image/jpeg");
+            var image = System.IO.File.OpenRead(_appEnvironment.WebRootPath + "/Files/" + url);
+            return File(image, "image/jpeg");
 
         }
     }
