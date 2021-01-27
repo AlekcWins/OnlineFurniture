@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using OnlineFurniture.Domain.Model;
-using Shop.Domain.Models;
+using OnlineFurniture.Models;
 
-namespace Shop.Database
+
+namespace OnlineFurniture.Domain.DB
 {
-    public class ApplicationDbContext :IdentityDbContext
+    public class ApplicationDbContext : ApiAuthorizationDbContext < ApplicationUser >
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options) { }
+        public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts  { get; set; }
@@ -22,8 +25,6 @@ namespace Shop.Database
         {
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>()
-                .HasKey(x => new { x.UserId});
             modelBuilder.Entity<Basket>()
                 .HasKey(x => new { x.BasketId });
             modelBuilder.Entity<Customer>()
