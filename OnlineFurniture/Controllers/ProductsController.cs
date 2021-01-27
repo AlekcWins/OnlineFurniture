@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineFurniture.Domain.DB;
 using OnlineFurniture.ProductsAdmin;
 using Shop.Application.ProductsAdmin;
-using Shop.Database;
 
 namespace Shop.UI.Controllers
 {

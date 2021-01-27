@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using OnlineFurniture.Domain.Model;
-using Shop.Database;
+using OnlineFurniture.Domain.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace OnlineFurniture.BasketAdmin
             /// </summary>
             public int Quantity { get; set; }
         }
-        public void AddToBasket(Request request)
+        public object AddToBasket(Request request)
         {
             var BasketList = new List<Basket>();
             var stringObject = _session.GetString("Basket");
@@ -57,6 +57,7 @@ namespace OnlineFurniture.BasketAdmin
 
             stringObject = JsonConvert.SerializeObject(request);
             _session.SetString("Basket", stringObject);
+            return null;
         }
         public IEnumerable<Request> GetBasket()
         {

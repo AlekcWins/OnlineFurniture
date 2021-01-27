@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineFurniture.BasketAdmin;
 using OnlineFurniture.Domain.Model;
-using Shop.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OnlineFurniture.Domain.DB;
 using static OnlineFurniture.BasketAdmin.BasketService;
 
 namespace OnlineFurniture.Controllers

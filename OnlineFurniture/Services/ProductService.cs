@@ -1,6 +1,6 @@
 ﻿using OnlineFurniture.Domain.Model;
 using Shop.Application.ProductsAdmin;
-using Shop.Database;
+using OnlineFurniture.Domain.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;

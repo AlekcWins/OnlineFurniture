@@ -1,5 +1,4 @@
-﻿using Shop.Domain.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineFurniture.Domain.Model
