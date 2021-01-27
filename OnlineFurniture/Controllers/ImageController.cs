@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OnlineFurniture.Data;
+using OnlineFurniture.Domain.DB;
 
 namespace OnlineFurniture.Controllers
 {
@@ -46,8 +46,8 @@ namespace OnlineFurniture.Controllers
         [Route("getImage")]
         public async Task<IActionResult> Get()
         {
-            var image = System.IO.File.OpenRead(_appEnvironment.WebRootPath + "/Files/" + "milki 2.jpeg");
-            return File(image, "image/jpeg");
+            var image =  System.IO.File.OpenRead(_appEnvironment.WebRootPath + "/Files/" + "milki 2.jpeg");
+            return    File(image, "image/jpeg");
 
         }
     }

@@ -1,23 +1,19 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using OnlineFurniture.Domain.Model.Common;
+using System.Text;
 
 namespace OnlineFurniture.Domain.Model
 {
-    /// <summary>
-    /// Сущность - заказ товара
-    /// </summary>
     public class Order
     {
-        
-        public int Id { get; set; }
-        public DateTime OrderPlaced { get; set; }
-        public DateTime? OrderFulfilled { get; set; }
-        public int CustomerId { get; set; }
+ 
+        public int OrderId { get; set; }
+        public string OrderRef { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string PostCode { get; set; }
 
-        public Customer Customer { get; set; }
-        public ICollection<ProductOrder> ProductOrders { get; set; }
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using OnlineFurniture.Domain.Model.Common;
 
 namespace OnlineFurniture.Domain.Model
 {
@@ -12,7 +11,7 @@ namespace OnlineFurniture.Domain.Model
         /// <summary>
         /// ID 
         /// </summary>
-        public  long Id { get; set; }
+        public int UserId { get; set; }
         
         /// <summary>
         /// Роль пользователя
@@ -44,8 +43,15 @@ namespace OnlineFurniture.Domain.Model
         /// Телефонный номер
         /// </summary>
         public string Phone { get; set; }
+
         
-        
+        public Basket Basket { get; set; }
+
         public ICollection<Order> Orders { get; set; }
+  
+
+        
+
+
     }
 }

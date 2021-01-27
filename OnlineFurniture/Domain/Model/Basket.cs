@@ -5,14 +5,9 @@ namespace OnlineFurniture.Domain.Model
     /// <summary>
     /// Сущность-корзина
     /// </summary>
-    public class Basket 
+    public class Basket : Entity
     {
-        
-        /// <summary>
-        /// ID 
-        /// </summary>
-        public  long Id { get; set; }
-        
+        public int BasketId { get; set; }
         /// <summary>
         /// Товар, готовый к покупке
         /// </summary>

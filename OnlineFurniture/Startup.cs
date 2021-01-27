@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using OnlineFurniture.Data;
+using OnlineFurniture.Domain.DB;
 using OnlineFurniture.Models;
 
 namespace OnlineFurniture
@@ -21,7 +21,6 @@ namespace OnlineFurniture
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            Console.Error.Write("404");
         }
 
         public IConfiguration Configuration { get; }
