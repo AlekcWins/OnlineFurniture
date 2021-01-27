@@ -21,6 +21,7 @@ namespace OnlineFurniture
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            Console.Error.Write("404");
         }
 
         public IConfiguration Configuration { get; }
