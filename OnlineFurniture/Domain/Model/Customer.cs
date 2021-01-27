@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using OnlineFurniture.Models;
 
 namespace OnlineFurniture.Domain.Model
 {
@@ -11,7 +13,9 @@ namespace OnlineFurniture.Domain.Model
         /// <summary>
         /// ID 
         /// </summary>
-        public int UserId { get; set; }
+        public string UserID { get; set; }
+        [ForeignKey("UserID")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
         
         /// <summary>
         /// Роль пользователя

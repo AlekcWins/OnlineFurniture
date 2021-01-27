@@ -178,12 +178,10 @@ namespace OnlineFurniture.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
@@ -220,12 +218,10 @@ namespace OnlineFurniture.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
@@ -235,30 +231,39 @@ namespace OnlineFurniture.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.Category", b =>
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.Basket", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("BasketId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("text");
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("integer");
 
-                    b.ToTable("Categories");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.HasKey("BasketId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Basket");
                 });
 
             modelBuilder.Entity("OnlineFurniture.Domain.Model.Customer", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("UserID")
+                        .HasColumnType("text");
 
                     b.Property<string>("Address")
                         .HasColumnType("text");
+
+                    b.Property<int?>("BasketId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -276,105 +281,82 @@ namespace OnlineFurniture.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserID");
+
+                    b.HasIndex("BasketId");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("OnlineFurniture.Domain.Model.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("Address1")
+                        .HasColumnType("text");
 
-                    b.Property<long?>("CustomerId1")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Address2")
+                        .HasColumnType("text");
 
-                    b.Property<DateTime?>("OrderFulfilled")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<string>("City")
+                        .HasColumnType("text");
 
-                    b.Property<DateTime>("OrderPlaced")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<string>("CustomerUserID")
+                        .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<string>("OrderRef")
+                        .HasColumnType("text");
 
-                    b.HasIndex("CustomerId1");
+                    b.Property<string>("PostCode")
+                        .HasColumnType("text");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("CustomerUserID");
 
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.Product", b =>
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.OrderProduct", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<long>("CategoryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Height")
+                    b.Property<int>("ProductId")
                         .HasColumnType("integer");
-
-                    b.Property<int>("Length")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Material")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("Producer")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.ProductOrder", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("OrderId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<long?>("ProductId1")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
+                    b.HasKey("ProductId", "OrderId");
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId1");
+                    b.ToTable("OrderProducts");
+                });
 
-                    b.ToTable("ProductOrders");
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("url_image")
+                        .HasColumnType("text");
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("OnlineFurniture.Models.ApplicationUser", b =>
@@ -492,33 +474,46 @@ namespace OnlineFurniture.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.Order", b =>
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.Basket", b =>
                 {
-                    b.HasOne("OnlineFurniture.Domain.Model.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId1");
+                    b.HasOne("OnlineFurniture.Domain.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.Product", b =>
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.Customer", b =>
                 {
-                    b.HasOne("OnlineFurniture.Domain.Model.Category", "Category")
+                    b.HasOne("OnlineFurniture.Domain.Model.Basket", "Basket")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("BasketId");
+
+                    b.HasOne("OnlineFurniture.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Customers")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnlineFurniture.Domain.Model.ProductOrder", b =>
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.Order", b =>
+                {
+                    b.HasOne("OnlineFurniture.Domain.Model.Customer", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerUserID");
+                });
+
+            modelBuilder.Entity("OnlineFurniture.Domain.Model.OrderProduct", b =>
                 {
                     b.HasOne("OnlineFurniture.Domain.Model.Order", "Order")
-                        .WithMany("ProductOrders")
+                        .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("OnlineFurniture.Domain.Model.Product", "Product")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("ProductId1");
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

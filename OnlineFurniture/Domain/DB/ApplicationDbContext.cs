@@ -1,18 +1,23 @@
-﻿using IdentityServer4.EntityFramework.Options;
+﻿using OnlineFurniture.Models;
+using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using OnlineFurniture.Domain.Model;
-using OnlineFurniture.Models;
-
+using OnlineFurniture.Domain.Model.Common;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace OnlineFurniture.Domain.DB
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext < ApplicationUser >
+    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions) { }
+        
+        public ApplicationDbContext(
+            DbContextOptions options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
+        {
+        }
+        
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts  { get; set; }
@@ -27,10 +32,13 @@ namespace OnlineFurniture.Domain.DB
             modelBuilder.Entity<Basket>()
                 .HasKey(x => new { x.BasketId });
             modelBuilder.Entity<Customer>()
-                .HasKey(x => new { x.UserId});
+                .HasKey(x => new { x.UserID});
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(x => new { x.ProductId, x.OrderId });
            
         }
+       
+        
+
     }
 }
