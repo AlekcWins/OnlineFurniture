@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using OnlineFurniture.Domain.Model;
 using Shop.Database;
@@ -11,12 +12,12 @@ namespace OnlineFurniture.BasketAdmin
 {
     public class BasketService
     {
-        private int _session;
+        private ISession _session;
         private ApplicationDbContext _ctx;
 
-        public BasketService(int UserId, ApplicationDbContext ctx)
+        public BasketService(ISession session, ApplicationDbContext ctx)
         {
-            _session = UserId;
+            _session = session;
             _ctx = ctx;
         }
         public class Request
@@ -84,5 +85,42 @@ namespace OnlineFurniture.BasketAdmin
             _ctx.Basket.Remove(Basket);
             await _ctx.SaveChangesAsync();
         }
+        public decimal GetTotalPrice()
+        {
+            var stringObject = _session.GetString("Basket");
+            if (string.IsNullOrEmpty(stringObject))
+            {
+                return 0;
+            }
+
+            decimal price = 0;
+
+            var BasketList = JsonConvert.DeserializeObject<List<Basket>>(stringObject);
+            foreach (var item in BasketList)
+            {
+                price += item.Product.Value;
+            }
+                
+            return price;
+        }
+        public int GetTotalAmount()
+        {
+            var stringObject = _session.GetString("Basket");
+            if (string.IsNullOrEmpty(stringObject))
+            {
+                return 0;
+            }
+
+            int amount = 0;
+
+            var BasketList = JsonConvert.DeserializeObject<List<Basket>>(stringObject);
+            foreach (var item in BasketList)
+            {
+                amount += item.Quantity;
+            }
+
+            return amount;
+        }
+
     }
 }

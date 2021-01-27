@@ -63,6 +63,19 @@ namespace OnlineFurniture.ProductsAdmin
             _ctx.Products.Remove(Product);
             await _ctx.SaveChangesAsync();
         }
+        public IEnumerable<ProductViewModel> GetSearchProduct(string search)
+        {
+            IEnumerable<ProductViewModel> ProductList = GetAllProducts();
+            IEnumerable<ProductViewModel> searchList = new List<ProductViewModel>();
+            foreach (ProductViewModel item in ProductList)
+            {
+                if(item.Name.Contains(search))
+                {
+                    searchList.Append(item);
+                }
+            }
+            return searchList;
+        }
 
     }
 }

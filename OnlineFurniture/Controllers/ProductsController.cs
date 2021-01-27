@@ -6,11 +6,11 @@ using Shop.Database;
 namespace Shop.UI.Controllers
 {
     [Route("[controller]")]
-    public class AdminController : Controller
+    public class ProductsController : Controller
     {
         private ApplicationDbContext _ctx;
 
-        public AdminController(ApplicationDbContext ctx)
+        public ProductsController(ApplicationDbContext ctx)
         {
             _ctx = ctx;
         }
@@ -24,6 +24,9 @@ namespace Shop.UI.Controllers
         public IActionResult DeleteProduct(int id) => Ok(new ProductService(_ctx).DeleteProduct(id));
         [HttpPut("products")]
         public IActionResult UpdateProduct(ProductViewModel vm) => Ok(new ProductService(_ctx).UpdateProduct(vm));
+        [HttpGet]
+        public IActionResult GetSearchProduct(string search) => Ok(new ProductService(_ctx).GetSearchProduct(search));
+        
 
     }
 }
